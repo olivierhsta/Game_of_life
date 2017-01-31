@@ -25,7 +25,7 @@ class Rules:
     def read_dimension(self):
         fr = open("config.txt", 'r')
         for line in fr:
-            line = line.strip()  # retirer le \n final
+            line = line.strip()                             # retirer le \n final
             x,y = line.split(',')
             x,y = int(x),int(y)
             break
@@ -48,7 +48,7 @@ class Rules:
             if first_line:
                 first_line = False
             else:
-                dict_position_cell[(int(list_position[1]))+(int(list_position[2])*width_board)] = \
-                    (Organism(dict_rules.get('R')[0], dict_rules.get('R')[-1], list_position[0], int(list_position[1]), int(list_position[2])))
+                org = Organism(dict_rules.get('R')[0], dict_rules.get('R')[-1], list_position[0], int(list_position[1]), int(list_position[2]))
+                dict_position_cell[(int(list_position[1]))+(int(list_position[2])*width_board)] = org
         fr.close()
         return dict_position_cell
