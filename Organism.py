@@ -2,7 +2,7 @@
 
 class Organism:
 
-    def __init__(self, birth, death, color, x, y):
+    def __init__(self, is_alive, x, y, birth=None, death=None, color=None):
         """
         constructeur de Organism
 
@@ -17,15 +17,26 @@ class Organism:
         self._color = color
         self._x = x
         self._y = y
+        self._is_alive = is_alive
+        self._neigh = 0
 
-    def __str__(self):
-        return "---------------\nCouleur : " + self._color + "\nX : " + str(self._x) + "\nY : " + str(self._y)
+    def add_neigh(self):
+        self._neigh += 1
+
+    def get_neigh(self):
+        return self._neigh
 
     def get_color(self):
-        return self._color
+        if self._is_alive:
+            return ' ' + self._color + ' '
+        else:
+            return " . "
 
     def get_x(self):
         return self._x
 
     def get_y(self):
         return self._y
+
+    def get_is_alive(self):
+        return self._is_alive

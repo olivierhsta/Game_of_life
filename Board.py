@@ -1,12 +1,9 @@
 
-
+from Organism import Organism
 
 class Board:
 
-    HEIGHT_BOARD = 10  # valeur de 10 par defaut
-    WIDTH_BOARD = 10  # valeur de 10 par defaut
-
-    def __init__(self, dict_cell, width, height):
+    def __init__(self, dict_cell={}, width=10, height=10):
         """
         constructeur de Board
 
@@ -18,6 +15,82 @@ class Board:
         self.WIDTH_BOARD = width
         self.HEIGHT_BOARD = height
         self._string_board = ''
+        self._list_organism = []
+        for j in range(self.HEIGHT_BOARD):
+            for i in range(self.WIDTH_BOARD):
+                try:
+                    # execute en O(n) car rechercher dans un dictionaire execute en O(1)
+                    self._list_organism.append(self._dict_cell[i+(j*self.WIDTH_BOARD)])
+                except KeyError:
+                    self._list_organism.append(Organism(False, i, j))
+
+    def find_neigh(self):
+        """
+        trouver le nombre de voisin vivant de chaque cellule
+
+        :return: nada
+        """
+
+        for j in range(self.HEIGHT_BOARD):
+            for i in range(self.WIDTH_BOARD):
+
+                current = i + (j * self.WIDTH_BOARD)
+
+                try:
+                    if self._list_organism[current - self.WIDTH_BOARD].get_is_alive():
+                        # cellule au-dessus de la cellule courante
+                        self._list_organism[current].add_neigh()
+                except IndexError:
+                    pass
+
+                try:
+                    if self._list_organism[current + self.WIDTH_BOARD].get_is_alive():
+                        # cellule en-dessous de la cellule courante
+                        self._list_organism[current].add_neigh()
+                except IndexError:
+                    pass
+
+                try:
+                    if self._list_organism[current - 1].get_is_alive():
+                        # cellule a gauche de la cellule courante
+                        self._list_organism[current].add_neigh()
+                except IndexError:
+                    pass
+
+                try:
+                    if self._list_organism[current + 1].get_is_alive():
+                        # cellule a droite de la cellule courante
+                        self._list_organism[current].add_neigh()
+                except IndexError:
+                    pass
+
+                try:
+                    if self._list_organism[current - self.WIDTH_BOARD - 1].get_is_alive():
+                        # cellule en diagonale en haut a gauche de la cellule courante
+                        self._list_organism[current].add_neigh()
+                except IndexError:
+                    pass
+
+                try:
+                    if self._list_organism[current - self.WIDTH_BOARD + 1].get_is_alive():
+                        # cellule en diagonale en haut a droite de la cellule courante
+                        self._list_organism[current].add_neigh()
+                except IndexError:
+                    pass
+
+                try:
+                    if self._list_organism[current + self.WIDTH_BOARD - 1].get_is_alive():
+                        # cellule en diagonale en bas a gauche de la cellule courante
+                        self._list_organism[current].add_neigh()
+                except IndexError:
+                    pass
+
+                try:
+                    if self._list_organism[current + self.WIDTH_BOARD + 1].get_is_alive():
+                        # cellule en diagonale en bas a droite de la cellule courante
+                        self._list_organism[current].add_neigh()
+                except IndexError :
+                    pass
 
     def __str__(self):
         """
@@ -25,12 +98,9 @@ class Board:
 
         :return: string a afficher lorsqu'on print une instance de Board
         """
-        for i in range(self.HEIGHT_BOARD):
-            for j in range(self.WIDTH_BOARD):
-                try:
-                    self._string_board += ' ' + self._dict_cell[j+(i*self.WIDTH_BOARD)].get_color() + ' '
-                except KeyError:
-                    self._string_board += " . "
+        for j in range(self.HEIGHT_BOARD):
+            for i in range(self.WIDTH_BOARD):
+                self._string_board += self._list_organism[i+(j*self.WIDTH_BOARD)].get_color()
             self._string_board += "\n"
         return self._string_board
 

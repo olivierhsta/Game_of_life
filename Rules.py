@@ -26,11 +26,11 @@ class Rules:
         fr = open("config.txt", 'r')
         for line in fr:
             line = line.strip()                             # retirer le \n final
-            x,y = line.split(',')
-            x,y = int(x),int(y)
+            x, y = line.split(',')
+            x, y = int(x), int(y)
             break
         fr.close()
-        return x,y
+        return x, y
 
     def read_config(self, dict_rules, width_board):
         """
@@ -39,7 +39,8 @@ class Rules:
         :param dict_rules: un dictionaire des regles pour chacune des couleurs
         :return: un dictionaire contenant la position des cellules vivantes
         """
-        dict_position_cell = {}                             # liste contenant les elements de la grille
+
+        dict_position_cell = {}                             # dictionaire contenant les elements de la grille
         first_line = True
         fr = open("config.txt", 'r')
         for line in fr:
@@ -48,7 +49,7 @@ class Rules:
             if first_line:
                 first_line = False
             else:
-                org = Organism(dict_rules.get('R')[0], dict_rules.get('R')[-1], list_position[0], int(list_position[1]), int(list_position[2]))
+                org = Organism(True, int(list_position[1]), int(list_position[2]), dict_rules.get('R')[0], dict_rules.get('R')[-1], list_position[0])
                 dict_position_cell[(int(list_position[1]))+(int(list_position[2])*width_board)] = org
         fr.close()
         return dict_position_cell
