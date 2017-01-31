@@ -23,12 +23,16 @@ class Rules:
 
 
     def read_dimension(self):
+        """
+        lire les dimensions de la grille dans le fichier texte
+
+        :return: les dimensions de la grille
+        """
         fr = open("config.txt", 'r')
-        for line in fr:
-            line = line.strip()                             # retirer le \n final
-            x, y = line.split(',')
-            x, y = int(x), int(y)
-            break
+        line = fr.readline()
+        line = line.strip()                             # retirer le \n final
+        x, y = line.split(',')
+        x, y = int(x), int(y)
         fr.close()
         return x, y
 
@@ -41,15 +45,12 @@ class Rules:
         """
 
         dict_position_cell = {}                             # dictionaire contenant les elements de la grille
-        first_line = True
         fr = open("config.txt", 'r')
+        fr.readline()
         for line in fr:
             line = line.strip()                             # retirer le \n final
             list_position = line.split(',')
-            if first_line:
-                first_line = False
-            else:
-                org = Organism(True, int(list_position[1]), int(list_position[2]), dict_rules.get('R')[0], dict_rules.get('R')[-1], list_position[0])
-                dict_position_cell[(int(list_position[1]))+(int(list_position[2])*width_board)] = org
+            org = Organism(True, int(list_position[1]), int(list_position[2]), dict_rules.get('R')[0], dict_rules.get('R')[-1], list_position[0])
+            dict_position_cell[(int(list_position[1]))+(int(list_position[2])*width_board)] = org
         fr.close()
         return dict_position_cell
