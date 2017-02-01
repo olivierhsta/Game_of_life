@@ -1,6 +1,8 @@
 
 from Organism import Organism
 from Red import Red
+from Green import Green
+from Blue import Blue
 
 class Board:
 
@@ -17,7 +19,6 @@ class Board:
         global HEIGHT_BOARD
         WIDTH_BOARD = width
         HEIGHT_BOARD = height
-        self._string_board = ''
         self._list_organism = []
         for j in range(HEIGHT_BOARD):
             for i in range(WIDTH_BOARD):
@@ -103,9 +104,12 @@ class Board:
         for j in range(HEIGHT_BOARD):
             for i in range(WIDTH_BOARD):
                 current = i + (j * WIDTH_BOARD)
-                if self._list_organism[current].get_neigh() >= Red.BIRTH and self._list_organism[current].get_color() == " . ":
-                    print("new " + str(current) + " " + str(self._list_organism[current].get_neigh()) + ">" + str(Red.BIRTH))
+                if self._list_organism[current].get_neigh() == Red.BIRTH and self._list_organism[current].get_color() == " . ":
                     self._list_organism[current] = Red(i,j)
+                if self._list_organism[current].get_neigh() == Blue.BIRTH and self._list_organism[current].get_color() == " . ":
+                    self._list_organism[current] = Blue(i,j)
+                if self._list_organism[current].get_neigh() == Green.BIRTH and self._list_organism[current].get_color() == " . ":
+                    self._list_organism[current] = Green(i,j)
 
 
     def __str__(self):
@@ -114,9 +118,11 @@ class Board:
 
         :return: string a afficher lorsqu'on print une instance de Board
         """
+
+        _string_board=""
         for j in range(HEIGHT_BOARD):
             for i in range(WIDTH_BOARD):
-                self._string_board += self._list_organism[i+(j*WIDTH_BOARD)].get_color()
-            self._string_board += "\n"
-        return self._string_board + "\nx"
+                _string_board += self._list_organism[i+(j*WIDTH_BOARD)].get_color()
+            _string_board += "\n"
+        return _string_board
 

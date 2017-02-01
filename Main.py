@@ -24,13 +24,11 @@ dict_position_cell = Rules.read_config(rules, dict_rules, width_board)
 board = Board(dict_position_cell, width_board, height_board)
 board.find_neigh()
 
-print(str(board) + "\n")
+print(str(board))
 
 
 board.turn()
-print("-----------------------------------------------")
-
-
+print()
 
 
 
