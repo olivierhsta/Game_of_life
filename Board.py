@@ -40,7 +40,7 @@ class Board:
                 current = i + (j * WIDTH_BOARD)
 
                 try:
-                    if self._list_organism[current - WIDTH_BOARD].get_is_alive():
+                    if current - WIDTH_BOARD > 0 and self._list_organism[current - WIDTH_BOARD].get_is_alive():
                         # cellule au-dessus de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
@@ -54,30 +54,31 @@ class Board:
                     pass
 
                 try:
-                    if self._list_organism[current - 1].get_is_alive():
+                    if current%WIDTH_BOARD != 0 and self._list_organism[current - 1].get_is_alive():
                         # cellule a gauche de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
                     pass
 
                 try:
-                    if current%10 != 9 and self._list_organism[current + 1].get_is_alive():
+                    if current%WIDTH_BOARD != WIDTH_BOARD-1 and self._list_organism[current + 1].get_is_alive():
                         # cellule a droite de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
                     pass
 
                 try:
-                    if self._list_organism[current - WIDTH_BOARD - 1].get_is_alive():
+                    if current - WIDTH_BOARD - 1 > 0 and self._list_organism[current - WIDTH_BOARD - 1].get_is_alive():
                         # cellule en diagonale en haut a gauche de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
                     pass
 
                 try:
-                    if self._list_organism[current - WIDTH_BOARD + 1].get_is_alive():
+                    if current - WIDTH_BOARD + 1 > 0 and self._list_organism[current - WIDTH_BOARD + 1].get_is_alive():
                         # cellule en diagonale en haut a droite de la cellule courante
                         self._list_organism[current].add_neigh()
+                        print("neigh added")
                 except IndexError:
                     pass
 

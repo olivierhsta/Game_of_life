@@ -9,13 +9,13 @@ from Blue import Blue
 rules = Rules()
 dict_rules = Rules.read_rules(rules)
 
-Red.BIRTH = dict_rules.get('R')[1]
+Red.BIRTH = dict_rules.get('R')[0]
 Red.DEATH = dict_rules.get('R')[-1]
 
-Green.BIRTH = dict_rules.get('G')[1]
+Green.BIRTH = dict_rules.get('G')[0]
 Green.DEATH = dict_rules.get('G')[-1]
 
-Blue.BIRTH = dict_rules.get('B')[1]
+Blue.BIRTH = dict_rules.get('B')[0]
 Blue.DEATH = dict_rules.get('B')[-1]
 
 width_board, height_board = Rules.read_dimension(rules)
