@@ -40,3 +40,6 @@ class Organism:
 
     def get_is_alive(self):
         return self._is_alive
+
+    def get_birth(self):
+        return self._birth

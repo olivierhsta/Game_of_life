@@ -1,5 +1,6 @@
 
 from Organism import Organism
+from Red import Red
 
 class Board:
 
@@ -60,7 +61,7 @@ class Board:
                     pass
 
                 try:
-                    if self._list_organism[current + 1].get_is_alive():
+                    if current%10 != 9 and self._list_organism[current + 1].get_is_alive():
                         # cellule a droite de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
@@ -94,11 +95,14 @@ class Board:
                 except IndexError :
                     pass
 
+
+
+
     def turn(self):
-        for j in range(self.HEIGHT_BOARD):
-            for i in range(self.WIDTH_BOARD):
-                current = i + (j * self.WIDTH_BOARD)
-                if self._list_organism[current].get_neigh() >=  and self._list_organism[current].get_color() == " . ":
+        for j in range(HEIGHT_BOARD):
+            for i in range(WIDTH_BOARD):
+                current = i + (j * WIDTH_BOARD)
+                if self._list_organism[current].get_neigh() >= Red.BIRTH and self._list_organism[current].get_color() == " . ":
                     print("new " + str(current) + self._list_organism[current].get_color() + str(self._list_organism[current].get_neigh()))
 
 
