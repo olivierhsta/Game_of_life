@@ -110,6 +110,13 @@ class Board:
                 if self._list_organism[current].get_neigh() == Green.BIRTH and self._list_organism[current].get_color() == " . ":
                     self._list_organism[current] = Green(i,j)
 
+                if self._list_organism[current].get_neigh() >= Red.DEATH and self._list_organism[current].get_color() == Red.COLOR:
+                    self._list_organism[current] = None
+                if self._list_organism[current].get_neigh() >= Blue.DEATH and self._list_organism[current].get_color() == Blue.COLOR:
+                    self._list_organism[current] = None
+                if self._list_organism[current].get_neigh() >= Green.DEATH and self._list_organism[current].get_color() == Green.COLOR:
+                    self._list_organism[current] = None
+
 
     def __str__(self):
         """

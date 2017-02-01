@@ -43,3 +43,6 @@ class Organism:
 
     def get_birth(self):
         return self._birth
+
+    def set_is_alive(self, val):
+        self._is_alive = val
