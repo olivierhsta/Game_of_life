@@ -1,4 +1,7 @@
 
+from Red import Red
+from Green import Green
+from Blue import Blue
 from Organism import Organism
 
 class Rules:
@@ -50,7 +53,14 @@ class Rules:
         for line in fr:
             line = line.strip()                             # retirer le \n final
             list_position = line.split(',')
-            org = Organism(True, int(list_position[1]), int(list_position[2]), dict_rules.get('R')[0], dict_rules.get('R')[-1], list_position[0])
+            color = list_position[0]
+            if color == 'R':
+                org = Red(int(list_position[1]), int(list_position[2]))
+            elif color == 'G':
+                org = Green(int(list_position[1]), int(list_position[2]))
+            elif color == 'B':
+                org = Blue(int(list_position[1]), int(list_position[2]))
             dict_position_cell[(int(list_position[1]))+(int(list_position[2])*width_board)] = org
         fr.close()
+        print(dict_position_cell)
         return dict_position_cell

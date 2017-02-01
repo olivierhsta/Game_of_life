@@ -12,15 +12,17 @@ class Board:
         :param height: hauteur de la grille
         """
         self._dict_cell = dict_cell
-        self.WIDTH_BOARD = width
-        self.HEIGHT_BOARD = height
+        global WIDTH_BOARD
+        global HEIGHT_BOARD
+        WIDTH_BOARD = width
+        HEIGHT_BOARD = height
         self._string_board = ''
         self._list_organism = []
-        for j in range(self.HEIGHT_BOARD):
-            for i in range(self.WIDTH_BOARD):
+        for j in range(HEIGHT_BOARD):
+            for i in range(WIDTH_BOARD):
                 try:
                     # execute en O(n) car rechercher dans un dictionaire execute en O(1)
-                    self._list_organism.append(self._dict_cell[i+(j*self.WIDTH_BOARD)])
+                    self._list_organism.append(self._dict_cell[i+(j*WIDTH_BOARD)])
                 except KeyError:
                     self._list_organism.append(Organism(False, i, j))
 
@@ -31,20 +33,20 @@ class Board:
         :return: nada
         """
 
-        for j in range(self.HEIGHT_BOARD):
-            for i in range(self.WIDTH_BOARD):
+        for j in range(HEIGHT_BOARD):
+            for i in range(WIDTH_BOARD):
 
-                current = i + (j * self.WIDTH_BOARD)
+                current = i + (j * WIDTH_BOARD)
 
                 try:
-                    if self._list_organism[current - self.WIDTH_BOARD].get_is_alive():
+                    if self._list_organism[current - WIDTH_BOARD].get_is_alive():
                         # cellule au-dessus de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
                     pass
 
                 try:
-                    if self._list_organism[current + self.WIDTH_BOARD].get_is_alive():
+                    if self._list_organism[current + WIDTH_BOARD].get_is_alive():
                         # cellule en-dessous de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
@@ -65,28 +67,28 @@ class Board:
                     pass
 
                 try:
-                    if self._list_organism[current - self.WIDTH_BOARD - 1].get_is_alive():
+                    if self._list_organism[current - WIDTH_BOARD - 1].get_is_alive():
                         # cellule en diagonale en haut a gauche de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
                     pass
 
                 try:
-                    if self._list_organism[current - self.WIDTH_BOARD + 1].get_is_alive():
+                    if self._list_organism[current - WIDTH_BOARD + 1].get_is_alive():
                         # cellule en diagonale en haut a droite de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
                     pass
 
                 try:
-                    if self._list_organism[current + self.WIDTH_BOARD - 1].get_is_alive():
+                    if self._list_organism[current + WIDTH_BOARD - 1].get_is_alive():
                         # cellule en diagonale en bas a gauche de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
                     pass
 
                 try:
-                    if self._list_organism[current + self.WIDTH_BOARD + 1].get_is_alive():
+                    if self._list_organism[current + WIDTH_BOARD + 1].get_is_alive():
                         # cellule en diagonale en bas a droite de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError :
@@ -98,9 +100,9 @@ class Board:
 
         :return: string a afficher lorsqu'on print une instance de Board
         """
-        for j in range(self.HEIGHT_BOARD):
-            for i in range(self.WIDTH_BOARD):
-                self._string_board += self._list_organism[i+(j*self.WIDTH_BOARD)].get_color()
+        for j in range(HEIGHT_BOARD):
+            for i in range(WIDTH_BOARD):
+                self._string_board += self._list_organism[i+(j*WIDTH_BOARD)].get_color()
             self._string_board += "\n"
         return self._string_board
 
