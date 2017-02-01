@@ -2,7 +2,7 @@
 
 class Organism:
 
-    def __init__(self, is_alive, x, y, birth=None, death=None, color=None):
+    def __init__(self, is_alive, x, y, birth=None, survie = None, death=None, color=None):
         """
         constructeur de Organism
 
@@ -13,6 +13,7 @@ class Organism:
         :param y: positon en y de la cellule
         """
         self._birth = birth
+        self._survie = survie
         self._death = death
         self._color = color
         self._x = x
