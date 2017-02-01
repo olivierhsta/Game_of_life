@@ -83,7 +83,7 @@ class Board:
                     pass
 
                 try:
-                    if current + WIDTH_BOARD < WIDTH_BOARD and self._list_organism[current + WIDTH_BOARD - 1].get_is_alive():
+                    if current + WIDTH_BOARD <= WIDTH_BOARD*HEIGHT_BOARD and self._list_organism[current + WIDTH_BOARD - 1].get_is_alive():
                         # cellule en diagonale en bas a gauche de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
