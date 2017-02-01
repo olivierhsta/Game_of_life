@@ -104,7 +104,8 @@ class Board:
             for i in range(WIDTH_BOARD):
                 current = i + (j * WIDTH_BOARD)
                 if self._list_organism[current].get_neigh() >= Red.BIRTH and self._list_organism[current].get_color() == " . ":
-                    print("new " + str(current) + self._list_organism[current].get_color() + str(self._list_organism[current].get_neigh()))
+                    print("new " + str(current) + " " + str(self._list_organism[current].get_neigh()) + ">" + str(Red.BIRTH))
+                    self._list_organism[current] = Red(i,j)
 
 
     def __str__(self):
@@ -117,5 +118,5 @@ class Board:
             for i in range(WIDTH_BOARD):
                 self._string_board += self._list_organism[i+(j*WIDTH_BOARD)].get_color()
             self._string_board += "\n"
-        return self._string_board
+        return self._string_board + "\nx"
 
