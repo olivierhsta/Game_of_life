@@ -103,19 +103,22 @@ class Board:
         for j in range(HEIGHT_BOARD):
             for i in range(WIDTH_BOARD):
                 current = i + (j * WIDTH_BOARD)
-                if self._list_organism[current].get_neigh() == Red.BIRTH and self._list_organism[current].get_color() == " . ":
+                if self._list_organism[current].get_neigh() == Red.BIRTH and self._list_organism[current].get_color() == ".":
                     self._list_organism[current] = Red(i,j)
-                if self._list_organism[current].get_neigh() == Blue.BIRTH and self._list_organism[current].get_color() == " . ":
+                if self._list_organism[current].get_neigh() == Blue.BIRTH and self._list_organism[current].get_color() == ".":
                     self._list_organism[current] = Blue(i,j)
-                if self._list_organism[current].get_neigh() == Green.BIRTH and self._list_organism[current].get_color() == " . ":
+                if self._list_organism[current].get_neigh() == Green.BIRTH and self._list_organism[current].get_color() == ".":
                     self._list_organism[current] = Green(i,j)
 
                 if self._list_organism[current].get_neigh() >= Red.DEATH and self._list_organism[current].get_color() == Red.COLOR:
-                    self._list_organism[current] = None
+                    self._list_organism[current].set_is_alive(False)
                 if self._list_organism[current].get_neigh() >= Blue.DEATH and self._list_organism[current].get_color() == Blue.COLOR:
-                    self._list_organism[current] = None
+                    self._list_organism[current].set_is_alive(False)
                 if self._list_organism[current].get_neigh() >= Green.DEATH and self._list_organism[current].get_color() == Green.COLOR:
-                    self._list_organism[current] = None
+                    self._list_organism[current].set_is_alive(False)
+
+
+
 
 
     def __str__(self):
@@ -128,7 +131,7 @@ class Board:
         _string_board=""
         for j in range(HEIGHT_BOARD):
             for i in range(WIDTH_BOARD):
-                _string_board += self._list_organism[i+(j*WIDTH_BOARD)].get_color()
+                _string_board += ' ' + self._list_organism[i+(j*WIDTH_BOARD)].get_color() +' '
             _string_board += "\n"
         return _string_board
 

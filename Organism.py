@@ -28,9 +28,9 @@ class Organism:
 
     def get_color(self):
         if self._is_alive:
-            return ' ' + self._color + ' '
+            return self._color
         else:
-            return " . "
+            return "."
 
     def get_x(self):
         return self._x
