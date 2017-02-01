@@ -31,9 +31,8 @@ print(str(board))
 
 
 board.turn()
-print()
-
-
-
-
+board.find_neigh()
 print(board)
+
+
+

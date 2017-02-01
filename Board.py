@@ -40,6 +40,8 @@ class Board:
 
                 current = i + (j * WIDTH_BOARD)
 
+                self._list_organism[current].set_neigh(0)
+
                 try:
                     if current - WIDTH_BOARD > 0 and self._list_organism[current - WIDTH_BOARD].get_is_alive():
                         # cellule au-dessus de la cellule courante
@@ -83,7 +85,7 @@ class Board:
                     pass
 
                 try:
-                    if current + WIDTH_BOARD <= WIDTH_BOARD*HEIGHT_BOARD and self._list_organism[current + WIDTH_BOARD - 1].get_is_alive():
+                    if current + WIDTH_BOARD < WIDTH_BOARD*HEIGHT_BOARD and self._list_organism[current + WIDTH_BOARD - 1].get_is_alive():
                         # cellule en diagonale en bas a gauche de la cellule courante
                         self._list_organism[current].add_neigh()
                 except IndexError:
@@ -103,30 +105,39 @@ class Board:
         for j in range(HEIGHT_BOARD):
             for i in range(WIDTH_BOARD):
                 current = i + (j * WIDTH_BOARD)
+                added= False
+
                 if self._list_organism[current].get_neigh() == Red.BIRTH and self._list_organism[current].get_color() == ".":
                     self._list_organism[current] = Red(i,j)
-                if self._list_organism[current].get_neigh() == Blue.BIRTH and self._list_organism[current].get_color() == ".":
-                    self._list_organism[current] = Blue(i,j)
-                if self._list_organism[current].get_neigh() == Green.BIRTH and self._list_organism[current].get_color() == ".":
+                    added = True
+                if self._list_organism[current].get_neigh() == Green.BIRTH and self._list_organism[current].get_color() == "." and not added:
                     self._list_organism[current] = Green(i,j)
+                    added = True
+                if self._list_organism[current].get_neigh() == Blue.BIRTH and self._list_organism[current].get_color() == "." and not added:
+                    self._list_organism[current] = Blue(i,j)
+                    added = True
 
-                if self._list_organism[current].get_neigh() < Red.SURVIE and self._list_organism[current].get_color() == Red.COLOR:
-                    self._list_organism[current].set_is_alive(False)
-                else:
-                    if self._list_organism[current].get_neigh() >= Red.DEATH and self._list_organism[current].get_color() == Red.COLOR:
-                        self._list_organism[current].set_is_alive(False)
 
-                if self._list_organism[current].get_neigh() < Blue.SURVIE and self._list_organism[current].get_color() == Blue.COLOR:
-                    self._list_organism[current].set_is_alive(False)
-                else:
-                    if self._list_organism[current].get_neigh() >= Blue.DEATH and self._list_organism[current].get_color() == Blue.COLOR:
+                if not added:
+                    if self._list_organism[current].get_neigh() < Red.SURVIE and self._list_organism[current].get_color() == Red.COLOR:
                         self._list_organism[current].set_is_alive(False)
+                    else:
+                        if self._list_organism[current].get_neigh() > Red.DEATH and self._list_organism[current].get_color() == Red.COLOR:
+                            self._list_organism[current].set_is_alive(False)
 
-                if self._list_organism[current].get_neigh() < Green.SURVIE and self._list_organism[current].get_color() == Green.COLOR:
-                    self._list_organism[current].set_is_alive(False)
-                else:
-                    if self._list_organism[current].get_neigh() >= Green.DEATH and self._list_organism[current].get_color() == Green.COLOR:
+                    if self._list_organism[current].get_neigh() < Blue.SURVIE and self._list_organism[current].get_color() == Blue.COLOR:
                         self._list_organism[current].set_is_alive(False)
+                    else:
+                        if self._list_organism[current].get_neigh() > Blue.DEATH and self._list_organism[current].get_color() == Blue.COLOR:
+                            self._list_organism[current].set_is_alive(False)
+
+                    if self._list_organism[current].get_neigh() < Green.SURVIE and self._list_organism[current].get_color() == Green.COLOR:
+                        self._list_organism[current].set_is_alive(False)
+                    else:
+                        if self._list_organism[current].get_neigh() > Green.DEATH and self._list_organism[current].get_color() == Green.COLOR:
+                            self._list_organism[current].set_is_alive(False)
+
+
 
 
 

@@ -24,6 +24,9 @@ class Organism:
     def add_neigh(self):
         self._neigh += 1
 
+    def set_neigh(self, new):
+        self._neigh = new
+
     def get_neigh(self):
         return self._neigh
 
