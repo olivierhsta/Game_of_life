@@ -94,6 +94,14 @@ class Board:
                 except IndexError :
                     pass
 
+    def turn(self):
+        for j in range(self.HEIGHT_BOARD):
+            for i in range(self.WIDTH_BOARD):
+                current = i + (j * self.WIDTH_BOARD)
+                if self._list_organism[current].get_neigh() >=  and self._list_organism[current].get_color() == " . ":
+                    print("new " + str(current) + self._list_organism[current].get_color() + str(self._list_organism[current].get_neigh()))
+
+
     def __str__(self):
         """
         fonction toString de Board
