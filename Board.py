@@ -105,7 +105,7 @@ class Board:
         for j in range(HEIGHT_BOARD):
             for i in range(WIDTH_BOARD):
                 current = i + (j * WIDTH_BOARD)
-                added= False
+                added = False
 
                 if self._list_organism[current].get_neigh() == Red.BIRTH and self._list_organism[current].get_color() == ".":
                     self._list_organism[current] = Red(i,j)

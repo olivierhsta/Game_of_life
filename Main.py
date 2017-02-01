@@ -1,4 +1,5 @@
-
+import sys
+import math
 from Rules import Rules
 from Board import Board
 from Red import Red
@@ -27,12 +28,30 @@ dict_position_cell = Rules.read_config(rules, dict_rules, width_board)
 board = Board(dict_position_cell, width_board, height_board)
 board.find_neigh()
 
-print(str(board))
+wait = False
+
+try:
+    arg = sys.argv[1]
+    try:
+        rep = int(arg)
+    except ValueError:
+        rep = math.inf
+        if arg == "animation":
+            wait = True
+except IndexError:
+    print("Aucun arguments entrees, 10 repetitions par defaut")
+    rep = 10
 
 
-board.turn()
-board.find_neigh()
-print(board)
 
 
+
+i = 0
+while i < rep:
+    print(board)
+    board.turn()
+    board.find_neigh()
+    i+=1
+    if wait:
+        input()
 

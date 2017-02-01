@@ -62,7 +62,6 @@ class Rules:
                 org = Blue(int(list_position[2]), int(list_position[1]))
             dict_position_cell[(int(list_position[2]))+(int(list_position[1])*width_board)] = org
         fr.close()
-        print(dict_position_cell)
         return dict_position_cell
 
     def get_dict_rules(self):
