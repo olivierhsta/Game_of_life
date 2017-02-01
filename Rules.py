@@ -55,12 +55,12 @@ class Rules:
             list_position = line.split(',')
             color = list_position[0]
             if color == 'R':
-                org = Red(int(list_position[1]), int(list_position[2]))
+                org = Red(int(list_position[2]), int(list_position[1]))
             elif color == 'G':
-                org = Green(int(list_position[1]), int(list_position[2]))
+                org = Green(int(list_position[2]), int(list_position[1]))
             elif color == 'B':
-                org = Blue(int(list_position[1]), int(list_position[2]))
-            dict_position_cell[(int(list_position[1]))+(int(list_position[2])*width_board)] = org
+                org = Blue(int(list_position[2]), int(list_position[1]))
+            dict_position_cell[(int(list_position[2]))+(int(list_position[1])*width_board)] = org
         fr.close()
         print(dict_position_cell)
         return dict_position_cell
