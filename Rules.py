@@ -64,3 +64,6 @@ class Rules:
         fr.close()
         print(dict_position_cell)
         return dict_position_cell
+
+    def get_dict_rules(self):
+        return self.dict_rules
