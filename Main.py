@@ -43,14 +43,11 @@ except IndexError:
     rep = 10
 
 
-
-print(board)
-
 i = 0
 while i < rep:
+    print(board)
     board.find_neigh()
     board.turn()
-    print(board)
 
     i+=1
     if wait:
