@@ -56,47 +56,51 @@ class Board:
                 except IndexError:
                     pass
 
-                try:
-                    if current%WIDTH_BOARD != 0 and self._list_organism[current - 1].get_is_alive():
-                        # cellule a gauche de la cellule courante
-                        self._list_organism[current].add_neigh()
-                except IndexError:
-                    pass
+                if not current%WIDTH_BOARD == 0:
+                    # toutes les cellules ne se trouvant pas sur le cote gauche de la grille entrent
+                    try:
+                        if self._list_organism[current - 1].get_is_alive():
+                            # cellule a gauche de la cellule courante
+                            self._list_organism[current].add_neigh()
+                    except IndexError:
+                        pass
 
-                try:
-                    if current%WIDTH_BOARD != WIDTH_BOARD-1 and self._list_organism[current + 1].get_is_alive():
-                        # cellule a droite de la cellule courante
-                        self._list_organism[current].add_neigh()
-                except IndexError:
-                    pass
+                    try:
+                        if current - WIDTH_BOARD > 0 and self._list_organism[current - WIDTH_BOARD - 1].get_is_alive():
+                            # cellule en diagonale en haut a gauche de la cellule courante
+                            self._list_organism[current].add_neigh()
+                    except IndexError:
+                        pass
 
-                try:
-                    if current - WIDTH_BOARD - 1 > 0 and self._list_organism[current - WIDTH_BOARD - 1].get_is_alive():
-                        # cellule en diagonale en haut a gauche de la cellule courante
-                        self._list_organism[current].add_neigh()
-                except IndexError:
-                    pass
+                    try:
+                        if self._list_organism[current + WIDTH_BOARD - 1].get_is_alive():
+                            # cellule en diagonale en bas a gauche de la cellule courante
+                            self._list_organism[current].add_neigh()
+                    except IndexError:
+                        pass
 
-                try:
-                    if current - WIDTH_BOARD + 1 > 0 and self._list_organism[current - WIDTH_BOARD + 1].get_is_alive():
-                        # cellule en diagonale en haut a droite de la cellule courante
-                        self._list_organism[current].add_neigh()
-                except IndexError:
-                    pass
+                if not current%WIDTH_BOARD == WIDTH_BOARD-1:
+                    # toutes les cellules ne se trouvant pas du cote droit de la grille entrent
+                    try:
+                        if self._list_organism[current + 1].get_is_alive():
+                            # cellule a droite de la cellule courante
+                            self._list_organism[current].add_neigh()
+                    except IndexError:
+                        pass
 
-                try:
-                    if current + WIDTH_BOARD < WIDTH_BOARD*HEIGHT_BOARD and self._list_organism[current + WIDTH_BOARD - 1].get_is_alive():
-                        # cellule en diagonale en bas a gauche de la cellule courante
-                        self._list_organism[current].add_neigh()
-                except IndexError:
-                    pass
+                    try:
+                        if current - WIDTH_BOARD > 0 and self._list_organism[current - WIDTH_BOARD + 1].get_is_alive():
+                            # cellule en diagonale en haut a droite de la cellule courante
+                            self._list_organism[current].add_neigh()
+                    except IndexError:
+                        pass
 
-                try:
-                    if self._list_organism[current + WIDTH_BOARD + 1].get_is_alive():
-                        # cellule en diagonale en bas a droite de la cellule courante
-                        self._list_organism[current].add_neigh()
-                except IndexError :
-                    pass
+                    try:
+                        if self._list_organism[current + WIDTH_BOARD + 1].get_is_alive():
+                            # cellule en diagonale en bas a droite de la cellule courante
+                            self._list_organism[current].add_neigh()
+                    except IndexError:
+                        pass
 
 
 
@@ -108,13 +112,13 @@ class Board:
                 added = False
 
                 if self._list_organism[current].get_neigh() == Red.BIRTH and self._list_organism[current].get_color() == ".":
-                    self._list_organism[current] = Red(i,j)
+                    self._list_organism[current] = Red(i, j)
                     added = True
                 if self._list_organism[current].get_neigh() == Green.BIRTH and self._list_organism[current].get_color() == "." and not added:
-                    self._list_organism[current] = Green(i,j)
+                    self._list_organism[current] = Green(i, j)
                     added = True
                 if self._list_organism[current].get_neigh() == Blue.BIRTH and self._list_organism[current].get_color() == "." and not added:
-                    self._list_organism[current] = Blue(i,j)
+                    self._list_organism[current] = Blue(i, j)
                     added = True
 
 
