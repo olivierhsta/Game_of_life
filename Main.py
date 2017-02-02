@@ -5,7 +5,31 @@ from Board import Board
 from Red import Red
 from Green import Green
 from Blue import Blue
+from Organism import Organism
 
+wait = False
+bool_color = False
+rep = 10
+
+try:
+    arg = sys.argv[1]
+    try:
+        rep = int(arg)
+    except ValueError:
+        rep = math.inf
+        if arg == "animation":
+            wait = True
+        elif arg == "couleur":
+            wait = False
+            rep = 10
+            bool_color = True
+except IndexError:
+    print("Aucun arguments entrees, 10 repetitions par defaut")
+
+if bool_color:
+    Red.show_color(Red)
+    Blue.show_color(Blue)
+    Green.show_color(Green)
 
 rules = Rules()
 dict_rules = Rules.read_rules(rules)
@@ -28,27 +52,11 @@ dict_position_cell = Rules.read_config(rules, dict_rules, width_board)
 board = Board(dict_position_cell, width_board, height_board)
 board.find_neigh()
 
-wait = False
-
-try:
-    arg = sys.argv[1]
-    try:
-        rep = int(arg)
-    except ValueError:
-        rep = math.inf
-        if arg == "animation":
-            wait = True
-except IndexError:
-    print("Aucun arguments entrees, 10 repetitions par defaut")
-    rep = 10
-
-
 i = 0
 while i < rep:
     print(board)
     board.find_neigh()
     board.turn()
-
     i+=1
     if wait:
         input()

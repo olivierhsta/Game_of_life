@@ -102,9 +102,6 @@ class Board:
                     except IndexError:
                         pass
 
-
-
-
     def turn(self):
         for j in range(HEIGHT_BOARD):
             for i in range(WIDTH_BOARD):
@@ -140,13 +137,6 @@ class Board:
                     else:
                         if self._list_organism[current].get_neigh() > Green.DEATH and self._list_organism[current].get_color() == Green.COLOR:
                             self._list_organism[current].set_is_alive(False)
-
-
-
-
-
-
-
 
     def __str__(self):
         """
