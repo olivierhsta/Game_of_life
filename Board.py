@@ -158,7 +158,7 @@ class Board:
         _string_board=""
         for j in range(HEIGHT_BOARD):
             for i in range(WIDTH_BOARD):
-                _string_board += ' ' + self._list_organism[i+(j*WIDTH_BOARD)].get_color() +' '
+                _string_board += ' ' + self._list_organism[i+(j*WIDTH_BOARD)].get_color() + ' '
             _string_board += "\n"
         return _string_board
 

@@ -55,4 +55,3 @@ while i < rep:
     i+=1
     if wait:
         input()
-
