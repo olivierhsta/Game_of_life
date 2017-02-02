@@ -158,7 +158,10 @@ class Board:
         _string_board=""
         for j in range(HEIGHT_BOARD):
             for i in range(WIDTH_BOARD):
-                _string_board += ' ' + self._list_organism[i+(j*WIDTH_BOARD)].get_color() + ' '
+                if self._list_organism[i+(j*WIDTH_BOARD)].get_is_alive():
+                    _string_board += ' ' + self._list_organism[i+(j*WIDTH_BOARD)].get_color() + ' '
+                else:
+                    _string_board += '\x1b[37m' + ' ' + self._list_organism[i + (j * WIDTH_BOARD)].get_color() + ' '
             _string_board += "\n"
         return _string_board
 
