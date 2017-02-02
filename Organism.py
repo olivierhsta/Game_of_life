@@ -51,5 +51,5 @@ class Organism:
     def set_is_alive(self, val):
         self._is_alive = val
 
-    def set_COLOR(self):
+    def show_color(self):
         pass
