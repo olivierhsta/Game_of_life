@@ -1,11 +1,11 @@
-import sys
 import math
-from Rules import Rules
-from Board import Board
-from Red import Red
-from Green import Green
+import sys
+
 from Blue import Blue
-from Organism import Organism
+from Board import Board
+from Green import Green
+from Red import Red
+from Rules import Rules
 
 wait = False
 bool_color = False
@@ -57,6 +57,6 @@ while i < rep:
     print(board)
     board.find_neigh()
     board.turn()
-    i+=1
+    i += 1
     if wait:
         input()

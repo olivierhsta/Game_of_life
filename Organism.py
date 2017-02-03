@@ -1,5 +1,4 @@
 
-
 class Organism:
 
     def __init__(self, is_alive, x, y, birth=None, survie = None, death=None, color=None):
@@ -24,8 +23,8 @@ class Organism:
     def add_neigh(self):
         self._neigh += 1
 
-    def set_neigh(self, new):
-        self._neigh = new
+    def reset_neigh(self):
+        self._neigh = 0
 
     def get_neigh(self):
         return self._neigh
@@ -42,14 +41,14 @@ class Organism:
     def get_y(self):
         return self._y
 
-    def get_is_alive(self):
+    def is_alive(self):
         return self._is_alive
 
     def get_birth(self):
         return self._birth
 
-    def set_is_alive(self, val):
-        self._is_alive = val
+    def die(self):
+        self._is_alive = False
 
     def show_color(self):
         pass
