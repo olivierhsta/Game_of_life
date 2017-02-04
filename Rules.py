@@ -2,7 +2,6 @@
 from Red import Red
 from Green import Green
 from Blue import Blue
-from Organism import Organism
 
 class Rules:
 
@@ -39,7 +38,7 @@ class Rules:
         fr.close()
         return x, y
 
-    def read_config(self, dict_rules, width_board):
+    def read_config(self, width_board):
         """
         lire le fichier texte contenant la configuration des cellules vivantes dans la grille
 
@@ -47,7 +46,9 @@ class Rules:
         :return: un dictionaire contenant la position des cellules vivantes
         """
 
-        dict_position_cell = {}                             # dictionaire contenant les elements de la grille
+        # definir un dictionaire qui contiendra des cellule associe a des key representant
+        # leur position future dans la grille
+        dict_position_cell = {}
         fr = open("config.txt", 'r')
         fr.readline()
         for line in fr:
@@ -55,14 +56,11 @@ class Rules:
             list_position = line.split(',')
             color = list_position[0]
             if color == 'R':
-                org = Red(int(list_position[2]), int(list_position[1]))
+                org = Red()
             elif color == 'G':
-                org = Green(int(list_position[2]), int(list_position[1]))
+                org = Green()
             elif color == 'B':
-                org = Blue(int(list_position[2]), int(list_position[1]))
+                org = Blue()
             dict_position_cell[(int(list_position[2]))+(int(list_position[1])*width_board)] = org
         fr.close()
         return dict_position_cell
-
-    def get_dict_rules(self):
-        return self.dict_rules

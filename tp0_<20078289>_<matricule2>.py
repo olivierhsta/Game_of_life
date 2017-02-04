@@ -1,6 +1,5 @@
 import math
 import sys
-
 from Blue import Blue
 from Board import Board
 from Green import Green
@@ -8,7 +7,6 @@ from Red import Red
 from Rules import Rules
 
 wait = False
-bool_color = False
 rep = 10
 
 try:
@@ -16,24 +14,20 @@ try:
     try:
         rep = int(arg)
     except ValueError:
-        rep = math.inf
         if arg == "animation":
+            rep = math.inf
             wait = True
         elif arg == "couleur":
-            wait = False
-            rep = 10
-            bool_color = True
+            Red.show_color(Red)
+            Blue.show_color(Blue)
+            Green.show_color(Green)
 except IndexError:
     print("Aucun arguments entrees, 10 repetitions par defaut")
-
-if bool_color:
-    Red.show_color(Red)
-    Blue.show_color(Blue)
-    Green.show_color(Green)
 
 rules = Rules()
 dict_rules = Rules.read_rules(rules)
 
+# assigner les bonnes valeurs pour les variables de mort-survie-naissance a chacune des trois classes de couleur
 Red.BIRTH = dict_rules.get('R')[0]
 Red.SURVIE = dict_rules.get('R')[1]
 Red.DEATH = dict_rules.get('R')[-1]
@@ -47,16 +41,14 @@ Blue.SURVIE = dict_rules.get('B')[1]
 Blue.DEATH = dict_rules.get('B')[-1]
 
 width_board, height_board = Rules.read_dimension(rules)
-dict_position_cell = Rules.read_config(rules, dict_rules, width_board)
+dict_position_cell = Rules.read_config(rules, width_board)
 
 board = Board(dict_position_cell, width_board, height_board)
 board.find_neigh()
 
-i = 0
-while i < rep:
+for i in range(0, rep):
     print(board)
     board.find_neigh()
     board.turn()
-    i += 1
     if wait:
         input()
