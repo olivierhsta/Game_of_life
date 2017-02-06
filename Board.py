@@ -36,54 +36,43 @@ class Board:
             for i in range(self.WIDTH_BOARD):
 
                 current = i + (j * self.WIDTH_BOARD)
-                self._list_organism[current].reset_neigh()
 
-                if current - self.WIDTH_BOARD > 0 and self._list_organism[current - self.WIDTH_BOARD].is_alive():
-                    # cellule au-dessus de la cellule courante
-                    self._list_organism[current].add_neigh()
-
-                try:
-                    if self._list_organism[current + self.WIDTH_BOARD].is_alive():
+                if self._list_organism[current].is_alive():
+                    # chaque cellule vivante ajoute 1 au compteur de voisins des cellules qu'elle touche
+                    if current - self.WIDTH_BOARD > 0:
+                        # cellule au-dessus de la cellule courante
+                        self._list_organism[current - self.WIDTH_BOARD].add_neigh()
+                    try:
+                        self._list_organism[current + self.WIDTH_BOARD].add_neigh()
                         # cellule en-dessous de la cellule courante
-                        self._list_organism[current].add_neigh()
-                except IndexError:
-                    pass
-
-                if not current % self.WIDTH_BOARD == 0:
-                    # toutes les cellules ne se trouvant pas sur le cote gauche de la grille entrent
-                    if self._list_organism[current - 1].is_alive():
+                    except IndexError:
+                        pass
+                    if not current % self.WIDTH_BOARD == 0:
+                        # toutes les cellules ne se trouvant pas sur le cote gauche de la grille entrent
+                        self._list_organism[current - 1].add_neigh()
                         # cellule a gauche de la cellule courante
-                        self._list_organism[current].add_neigh()
-
-                    if current - self.WIDTH_BOARD > 0 and self._list_organism[current - self.WIDTH_BOARD - 1].is_alive():
-                        # cellule en diagonale en haut a gauche de la cellule courante
-                        self._list_organism[current].add_neigh()
-
-                    try:
-                        if self._list_organism[current + self.WIDTH_BOARD - 1].is_alive():
+                        if current - self.WIDTH_BOARD > 0:
+                            self._list_organism[current - self.WIDTH_BOARD - 1].add_neigh()
+                            # cellule en diagonale en haut a gauche de la cellule courante
+                        try:
+                            self._list_organism[current + self.WIDTH_BOARD - 1].add_neigh()
                             # cellule en diagonale en bas a gauche de la cellule courante
-                            self._list_organism[current].add_neigh()
-                    except IndexError:
-                        pass
-
-                if not current % self.WIDTH_BOARD == self.WIDTH_BOARD-1:
-                    # toutes les cellules ne se trouvant pas du cote droit de la grille entrent
-                    try:
-                        if self._list_organism[current + 1].is_alive():
+                        except IndexError:
+                            pass
+                    if not current % self.WIDTH_BOARD == self.WIDTH_BOARD - 1:
+                        # toutes les cellules ne se trouvant pas du cote droit de la grille entrent
+                        try:
+                            self._list_organism[current + 1].add_neigh()
                             # cellule a droite de la cellule courante
-                            self._list_organism[current].add_neigh()
-
-                        if self._list_organism[current + self.WIDTH_BOARD + 1].is_alive():
+                            self._list_organism[current + self.WIDTH_BOARD + 1].add_neigh()
                             # cellule en diagonale en bas a droite de la cellule courante
-                            self._list_organism[current].add_neigh()
-                    except IndexError:
-                        # un seul try est requis pour les deux verification car si la list est outOfBounds a current+1,
-                        # elle le sera aussi a current+self.WIDTH_BOARD+1
-                        pass
-
-                    if current - self.WIDTH_BOARD > 0 and self._list_organism[current - self.WIDTH_BOARD + 1].is_alive():
-                        # cellule en diagonale en haut a droite de la cellule courante
-                        self._list_organism[current].add_neigh()
+                        except IndexError:
+                            # un seul try est necessaire pour les deux verifications car si la list est outOfBounds a current+1,
+                            # elle le sera aussi a current+self.WIDTH_BOARD+1
+                            pass
+                        if current - self.WIDTH_BOARD > 0:
+                            self._list_organism[current - self.WIDTH_BOARD + 1].add_neigh()
+                            # cellule en diagonale en haut a droite de la cellule courante
 
         # chaque operation a l'interieur execute en un temps constant, la boucle execute donc en O(n)
 
@@ -121,6 +110,7 @@ class Board:
                     elif color == Blue.COLOR:
                         if nb_neigh < Blue.SURVIE or nb_neigh > Blue.DEATH:
                             self._list_organism[current].die()
+                self._list_organism[current].reset_neigh()
         # la fonction execute en O(n)
 
     def __str__(self):

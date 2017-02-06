@@ -62,6 +62,8 @@ def play():
         i += 1
         if wait:
             input()
+            print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                  "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
 wait,rep = receive_argv()
 
@@ -74,6 +76,5 @@ width_board, height_board = Rules.read_dimension(rules)
 dict_position_cell = Rules.read_config(rules, width_board)
 
 board = Board(dict_position_cell, width_board, height_board)
-board.find_neigh()
 
 play()
