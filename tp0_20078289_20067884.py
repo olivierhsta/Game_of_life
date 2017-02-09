@@ -27,8 +27,20 @@ def receive_argv():
                 Red.show_color(Red)
                 Blue.show_color(Blue)
                 Green.show_color(Green)
-    except IndexError:
-        print("Aucun arguments entrees, 10 repetitions par defaut")
+            else:
+                print("\nMauvais argument : 10 repetions par defaut (appuyez sur -Enter pour continuer)\n")
+                input()
+    except Exception:
+        rep = 0
+        print("\n------------------------------------------------------------------------------\n\n"
+              "Aucun arguments entrees\n\n"
+              "Pour demarrer le projet pour un nombre n de repetition :\n"
+              "subprocess.call([sys.executable,'tp0_20078289_20067884.py', 'n'])\n\n"
+              "Pour demarrer le projet en couleur pour 10 repetitions :\n"
+              "subprocess.call([sys.executable,'tp0_20078289_20067884.py', 'couleur'])\n\n"
+              "Pour demarrer le projet en mode animation :\n"
+              "subprocess.call([sys.executable,'tp0_20078289_20067884.py', 'animation'])\n"
+              "\n------------------------------------------------------------------------------\n\n")
     return wait,rep
 
 
@@ -62,8 +74,10 @@ def play():
         i += 1
         if wait:
             input()
-            print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-                  "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+            print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                  "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                  "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                  "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
 wait,rep = receive_argv()
 
