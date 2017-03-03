@@ -67,13 +67,10 @@ class Board:
                             self._list_organism[current + self.WIDTH_BOARD + 1].add_neigh()
                             # cellule en diagonale en bas a droite de la cellule courante
                         except IndexError:
-                            # un seul try est necessaire pour les deux verifications car si la list est outOfBounds a current+1,
-                            # elle le sera aussi a current+self.WIDTH_BOARD+1
                             pass
                         if current - self.WIDTH_BOARD > 0:
                             self._list_organism[current - self.WIDTH_BOARD + 1].add_neigh()
                             # cellule en diagonale en haut a droite de la cellule courante
-
         # chaque operation a l'interieur execute en un temps constant, la boucle execute donc en O(n)
 
     def turn(self):
@@ -90,7 +87,7 @@ class Board:
                 nb_neigh = self._list_organism[current].get_neigh()
 
                 if not is_alive:
-                    # remplacer les cellules mortes avec le bon nombre de voisin par des cellules vivantes
+                    # remplacer les cellules mortes avec le bon nombre de voisins par des cellules vivantes
                     if nb_neigh == Red.BIRTH:
                         self._list_organism[current] = Red()
                     elif nb_neigh == Green.BIRTH:
@@ -123,7 +120,7 @@ class Board:
         _string_board = ""
         for j in range(self.HEIGHT_BOARD):
             for i in range(self.WIDTH_BOARD):
-                _string_board += ' ' + self._list_organism[i+(j*self.WIDTH_BOARD)].get_display() + ' '
+                _string_board += self._list_organism[i+(j*self.WIDTH_BOARD)].get_display() + ' '
             _string_board += "\n"
         return _string_board
         # execute en O(n)

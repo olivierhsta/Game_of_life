@@ -14,4 +14,4 @@ class Green(Organism):
         """
         permet d'activer le mode dans lequel les couleurs sont affiche lors de l'execution
         """
-        self.COLOR = '\x1b[32m' + 'G' + '\x1b[0m'
+        self.COLOR = '\x1b[32m' + '#' + '\x1b[0m'

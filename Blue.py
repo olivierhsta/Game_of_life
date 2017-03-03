@@ -14,4 +14,4 @@ class Blue(Organism):
         """
         permet d'activer le mode dans lequel les couleurs sont affiche lors de l'execution
         """
-        self.COLOR = '\x1b[34m' + 'B' + '\x1b[0m'
+        self.COLOR = '\x1b[34m' + '#' + '\x1b[0m'

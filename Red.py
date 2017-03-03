@@ -14,4 +14,4 @@ class Red(Organism):
         """
         permet d'activer le mode dans lequel les couleurs sont affiche lors de l'execution
         """
-        self.COLOR = '\x1b[31m' + 'R' + '\x1b[0m'
+        self.COLOR = '\x1b[31m' + '#' + '\x1b[0m'
